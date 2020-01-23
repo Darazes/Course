@@ -1,0 +1,6 @@
+Boba;12;parquet;laying;meter;30;500;House;15
+Boba;12;sticking;wallpaper;meter;40;450;House;45
+Pepa;17;sticking;wallpaper;meter;40;450;House;35
+Pupa;14;parquet;laying;meter;60;500;House;15
+Pupa;14;sticking;wallpaper;meter;40;450;House;20
+Gordon;13;sticking;wallpaper;meter;50;450;House;65
