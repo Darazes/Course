@@ -77,7 +77,7 @@ namespace Курсовая_работа
             Console.WriteLine($"Вид деятельности: " + vdeat.getviddeat()); 
             Console.WriteLine($"Работа на объекте: " + target.getnameobject());
         }
-        public void Printf(StreamWriter file)
+        public void Printf(SaveManager file)
         {
             file.WriteLine("Еденица измерения: " + unit);
             file.WriteLine("Цена еденицы измерения: " + costunit);

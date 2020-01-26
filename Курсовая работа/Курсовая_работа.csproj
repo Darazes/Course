@@ -44,10 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brigada.cs" />
-    <Compile Include="SaveLoadManager.cs" />
+    <Compile Include="LoadManager.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveManager.cs" />
     <Compile Include="Viddeat.cs" />
     <Compile Include="Work.cs" />
   </ItemGroup>

@@ -22,24 +22,14 @@ namespace Курсовая_работа
             string operationdeat;
             string tg;
             int i = 0;
-            bool flag = false;
+            //bool flag = false;
 
             //Создание или перезапись файла для последующей записи.
             Console.WriteLine("БАЗА ДАННЫХ СТРОИТЕЛЬНОЙ ФИРМЫ");
             
+            SaveManager file = new SaveManager("Result.txt");
 
-            Console.WriteLine("Выберите параметр записи(1-Добавление;2-Перезапись):");
-            int parametr = int.Parse(Console.ReadLine());
-            if (parametr == 2) flag = true;
-            StreamWriter file = new StreamWriter(("Result.txt"), true);
-            if (flag == true)
-            {
-                file.Close();
-                file = new StreamWriter(File.Create("Result.txt"));
-                file.WriteLine("БАЗА ДАННЫХ СТРОИТЕЛЬНОЙ ФИРМЫ");
-            }
-   
-                while (true)
+            while (true)
                         {
                         Console.WriteLine("БАЗА ДАННЫХ СТРОИТЕЛЬНОЙ ФИРМЫ");
                         Console.WriteLine("==============================");
@@ -59,7 +49,9 @@ namespace Курсовая_работа
                                 List<Work>[] worksf = new List<Work>[30];
                                 Viddeat[] viddeatf = new Viddeat[30];
                                 Object[] targetf = new Object[30];
-                                StreamReader sr = File.OpenText("Brigada.txt");
+                                //StreamReader sr = File.OpenText("Brigada.txt");
+                                LoadManager sr = new LoadManager("Brigada.txt");
+                                sr.OpenText();
                                 while (true)
                                 {
                                     string str = sr.ReadLine();
@@ -96,8 +88,7 @@ namespace Курсовая_работа
                                     i++;
 
                                 }
-                                sr.Close();
-
+                                sr.EndRead();
                                 i = 0;
                                 while (true)
                                 {

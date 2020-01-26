@@ -61,7 +61,7 @@ namespace Курсовая_работа
             Console.WriteLine("Зарплата за месяц бриадира: " + Zp*1.2);
             foreach (Work w in works) w.Print();
         }
-        public void PrintFile(StreamWriter file)
+        public void PrintFile(SaveManager file)
         {
             file.WriteLine("Номер бригады: " + Numberbrigada);
             file.WriteLine("ФИО бригадира:  " + FIO);

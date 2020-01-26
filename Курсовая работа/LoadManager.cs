@@ -23,9 +23,10 @@ namespace Курсовая_работа
     {
         FileInfo file;
         StreamReader input;
+        string filename;
         public LoadManager(string filename)
         {
-            file = new FileInfo(filename);
+            this.filename = filename;
             input = null;
         }
 
@@ -34,12 +35,12 @@ namespace Курсовая_работа
             return loader.Load(this);
         }
 
-        public void BeginRead()
+        public void OpenText()
         {
             if (input != null)
                 throw new IOException("Load Error");
 
-            input = file.OpenText();
+            input = File.OpenText(filename);
         }
         public bool IsLoading
         {
@@ -50,8 +51,8 @@ namespace Курсовая_работа
             if (input == null)
                 throw new IOException("Load Error");
 
-            string line = input.ReadLine();
-            return line;
+            //string line = input.ReadLine();
+            return input.ReadLine(); ;
         }
 
         public void EndRead()
