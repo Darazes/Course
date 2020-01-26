@@ -21,7 +21,6 @@ namespace Курсовая_работа
     }
     class LoadManager : ILoadManager
     {
-        FileInfo file;
         StreamReader input;
         string filename;
         public LoadManager(string filename)
