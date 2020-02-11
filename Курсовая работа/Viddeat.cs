@@ -13,6 +13,11 @@ namespace Курсовая_работа
         string operationdeat;
 
         public Viddeat() { }
+        public Viddeat(string[] elements)
+        {
+            setnamedeat(elements[2]);
+            setoperationdeat(elements[3]);
+        }
         ~Viddeat() { }
 
         public string getnamedeat()

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Brigada.cs" />
     <Compile Include="LoadManager.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

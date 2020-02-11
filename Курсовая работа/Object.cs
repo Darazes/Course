@@ -11,6 +11,11 @@ namespace Курсовая_работа
     {
         string nameobject; //Имя объекта
 
+        public Object() { }
+        public Object(string[] elements)
+        {
+            setnameobject(elements[7]);
+        }
         public string getnameobject()
         {
             return nameobject;

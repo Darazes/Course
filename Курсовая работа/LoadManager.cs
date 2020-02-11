@@ -19,10 +19,17 @@ namespace Курсовая_работа
     {
         IReadbleObject Load(ILoadManager man);
     }
+
+    delegate void Message(string e);
+
     class LoadManager : ILoadManager
     {
         StreamReader input;
         string filename;
+        public Message DidStartLoad;
+        public Message DidEndLoad;
+        public Message ObjectDidLoad;
+
         public LoadManager(string filename)
         {
             this.filename = filename;
@@ -38,8 +45,9 @@ namespace Курсовая_работа
         {
             if (input != null)
                 throw new IOException("Load Error");
-
+            DidStartLoad(filename);
             input = File.OpenText(filename);
+            
         }
         public bool IsLoading
         {
@@ -54,12 +62,28 @@ namespace Курсовая_работа
             return input.ReadLine(); ;
         }
 
-        public void EndRead()
+        public int Lenght(string filename)
+        {
+            return System.IO.File.ReadAllLines(filename).Length;
+        }
+
+        
+
+        public string[] Read(LoadManager sr)
+        {
+            string str = sr.ReadLine();
+            string[] elements = str.Split(';');
+            ObjectDidLoad(filename);
+            return elements;
+        }
+
+        public void EndRead(SaveManager log)
         {
             if (input == null)
                 throw new IOException("Load Error");
-
+            DidEndLoad(filename);
             input.Close();
+            log.Close();
         }
     }
 }

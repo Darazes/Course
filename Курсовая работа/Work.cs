@@ -18,6 +18,14 @@ namespace Курсовая_работа
         Object target;
 
         public Work() { }
+        public Work(string[] elements,Object targetf,Viddeat viddeatf)
+        {
+            setunit(elements[4]);
+            setcountunit(int.Parse(elements[5]));
+            setcostunit(float.Parse(elements[6]));
+            setObject(targetf);
+            setvdeat(viddeatf);
+        }
         ~Work() { }
 
         public Viddeat getvdeat()

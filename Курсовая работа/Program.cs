@@ -28,6 +28,7 @@ namespace Курсовая_работа
             Console.WriteLine("БАЗА ДАННЫХ СТРОИТЕЛЬНОЙ ФИРМЫ");
             
             SaveManager file = new SaveManager("Result.txt");
+            SaveManager log = new SaveManager("log.txt");
 
             while (true)
                         {
@@ -51,44 +52,42 @@ namespace Курсовая_работа
                                 Object[] targetf = new Object[30];
                                 //StreamReader sr = File.OpenText("Brigada.txt");
                                 LoadManager sr = new LoadManager("Brigada.txt");
-                                sr.OpenText();
+                                bool open = false;
+                                //sr.OpenText();
                                 while (true)
                                 {
-                                    string str = sr.ReadLine();
+                                    LoadLogger llog = new LoadLogger(sr, log);
+                                    if (!open) { sr.OpenText();open = true; }
+                                    /*string str = sr.ReadLine();
                                     if (str == null)
                                         break;
-                                    string[] elements = str.Split(';');
+                                    string[] elements = str.Split(';');*/
 
+                                    string[] elements = sr.Read(sr); //Получение элементов для записи
 
-                                    //Бригада(считывание значений)
-                                    brigf[i] = new Brigada();
-                                    brigf[i].setFIO(elements[0]);
-                                    brigf[i].setNumberbrigada(int.Parse(elements[1]));
+                                        brigf[i] = new Brigada(elements); //Бригада(считывание значений)
 
-                                    viddeatf[i] = new Viddeat(); //Считывание видов деятельности бригад
-                                    viddeatf[i].setnamedeat(elements[2]);
-                                    viddeatf[i].setoperationdeat(elements[3]);
+                                        viddeatf[i] = new Viddeat(elements); //Считывание видов деятельности бригад
 
-                                    targetf[i] = new Object(); //Считывание объектов бригад
-                                    targetf[i].setnameobject(elements[7]);
-
-                                    worksf[i] = new List<Work>(); //Инициализация листа работ бригады
+                                        targetf[i] = new Object(elements); //Считывание объектов бригад
                                     
-                                    workf[i] = new Work();
-                                    workf[i].setunit(elements[4]);
-                                    workf[i].setcountunit(int.Parse(elements[5]));
-                                    workf[i].setcostunit(float.Parse(elements[6]));
-                                    plan[i] = int.Parse(elements[8]);
-                                    workf[i].setObject(targetf[i]);
-                                    workf[i].setvdeat(viddeatf[i]);
-                                    worksf[i].Add(workf[i]); //Добавление работы в лист работ бригады
+                                        worksf[i] = new List<Work>(); //Инициализация листа работ бригады
 
-                                    brigf[i].setZp(worksf[i]); // Пересчёт з.п
-                                    brigf[i].setworks(worksf[i]); //Передача работ
+                                        plan[i] = int.Parse(elements[8]); //Считывание плана работ
+
+                                        workf[i] = new Work(elements,targetf[i],viddeatf[i]); //Считывание работы бригады
+
+                                        worksf[i].Add(workf[i]); //Добавление работы в лист работ бригады
+
+                                        brigf[i].setZp(worksf[i]); // Пересчёт з.п
+                                        brigf[i].setworks(worksf[i]); //Передача работ
+
+                                    if ((sr.Lenght("Brigada.txt")-1) == i) break; //Если считаны все строки выйти из цикла
+
                                     i++;
 
                                 }
-                                sr.EndRead();
+                                sr.EndRead(log);
                                 i = 0;
                                 while (true)
                                 {
@@ -244,7 +243,9 @@ namespace Курсовая_работа
                                         //brig[i] = null;
                                     break;
                             case 2: file.WriteLine(""); break;
-                            case 3: file.Close(); return;
+                            case 3: file.Close();
+                                    Console.WriteLine("Редактирование завершено");
+                                    break;
                             case 4: Environment.Exit(0); break;
                             default:
                                 Console.WriteLine("Введено неверное значение");

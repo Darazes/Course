@@ -14,6 +14,11 @@ namespace Курсовая_работа
         float Zp;
         List<Work> works;
         public Brigada() { }
+        public Brigada(string[] elements)
+        {
+            setFIO(elements[0]);
+            setNumberbrigada(int.Parse(elements[1]));
+        }
         ~Brigada() { }
 
         public int getNumberbrigada()
